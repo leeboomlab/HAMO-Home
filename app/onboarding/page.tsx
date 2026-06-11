@@ -145,7 +145,7 @@ export default function OnboardingPage() {
         <div className="grid grid-cols-2 gap-2">
           {(
             [
-              ["senior", "시니어 본인"],
+              ["senior", "어르신"],
               ["caregiver", "보호자"],
             ] as [UserType, string][]
           ).map(([value, label]) => (
