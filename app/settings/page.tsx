@@ -7,7 +7,7 @@ import MobileShell from "@/components/layout/MobileShell";
 import Header from "@/components/layout/Header";
 import GoogleLoginButton from "@/components/auth/GoogleLoginButton";
 import { getSessionInfo } from "@/lib/auth/session";
-import { signOut } from "@/lib/auth/authClient";
+import { signOut, signOutGuest } from "@/lib/auth/authClient";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 import {
   fetchReminderPreference,
@@ -79,6 +79,15 @@ export default function SettingsPage() {
 
   const handleSignOut = async () => {
     await signOut();
+    router.replace("/start");
+  };
+
+  const handleGuestExit = async () => {
+    const ok = window.confirm(
+      "모든 기록이 삭제되고 시작 화면으로 돌아갑니다. 계속할까요?",
+    );
+    if (!ok) return;
+    await signOutGuest();
     router.replace("/start");
   };
 
@@ -168,7 +177,18 @@ export default function SettingsPage() {
           </p>
         </div>
 
-        {/* 로그아웃 */}
+        {/* 게스트: 처음으로 */}
+        {session?.mode === "guest" && (
+          <button
+            type="button"
+            onClick={handleGuestExit}
+            className="rounded-2xl bg-card border border-gray-200 p-4 flex items-center gap-2 text-base font-bold text-danger active:scale-[0.98] transition"
+          >
+            <LogOut size={18} /> 처음으로 돌아가기
+          </button>
+        )}
+
+        {/* Google 로그아웃 */}
         {session?.mode === "google" && (
           <button
             type="button"

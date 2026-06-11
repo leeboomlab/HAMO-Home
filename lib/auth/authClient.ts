@@ -1,3 +1,4 @@
+import { clearGuestData } from "@/lib/storage/guestStorage";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 
 /**
@@ -34,4 +35,11 @@ export async function signOut(): Promise<void> {
   const supabase = getSupabaseBrowserClient();
   if (!supabase) return;
   await supabase.auth.signOut();
+}
+
+/** 게스트 모드 종료: localStorage 초기화 + 익명 Auth 세션 종료 */
+export async function signOutGuest(): Promise<void> {
+  clearGuestData();
+  const supabase = getSupabaseBrowserClient();
+  if (supabase) await supabase.auth.signOut();
 }

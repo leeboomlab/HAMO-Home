@@ -132,7 +132,7 @@ export default function OnboardingPage() {
 
   return (
     <MobileShell className="px-5 pb-10">
-      <Header />
+      <Header logoHref="/start" />
       <h1 className="text-2xl font-black text-ink mt-2">
         시작 전에 간단히 알려주세요
       </h1>
