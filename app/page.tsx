@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ShieldCheck, UserRound } from "lucide-react";
+import { UserRound } from "lucide-react";
 import MobileShell from "@/components/layout/MobileShell";
 import Header from "@/components/layout/Header";
 import GuestModeBanner from "@/components/auth/GuestModeBanner";
@@ -140,14 +140,6 @@ export default function HomePage() {
         <TodayRoutineCard completed={habit?.todayCompleted ?? false} />
 
         {profile.isGuest && <GuestModeBanner />}
-
-        <div className="rounded-2xl bg-card border border-gray-100 px-4 py-3 flex items-start gap-3">
-          <ShieldCheck className="text-primary shrink-0 mt-0.5" size={20} />
-          <p className="text-sm text-sub leading-relaxed">
-            HAMO는 영상이 기기에서 분석되며, 서버에 저장되거나 전송되지
-            않습니다.
-          </p>
-        </div>
 
         <div className="rounded-2xl bg-card border border-gray-100 p-5 mb-4">
           <div className="flex items-center justify-between">
