@@ -13,6 +13,15 @@ const nextConfig: NextConfig = {
     "192.168.0.49",
     ...(extraDevHost ? [extraDevHost] : []),
   ],
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        destination: "https://hamocare.com",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
